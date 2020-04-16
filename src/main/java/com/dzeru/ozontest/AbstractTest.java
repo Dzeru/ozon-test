@@ -11,6 +11,7 @@ public abstract class AbstractTest {
 
     protected static Properties properties = new Properties();
     protected ChromeDriver driver;
+    protected final String OZON_URL = "https://www.ozon.ru/";
 
     static {
         try {

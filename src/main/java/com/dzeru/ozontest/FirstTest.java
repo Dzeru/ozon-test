@@ -1,16 +1,19 @@
 package com.dzeru.ozontest;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.openqa.selenium.chrome.ChromeDriver;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+/*
+Авторизоваться на сайте, после авторизации проверить что на главной
+странице отображается логин. Убедиться что кнопка “Войти в аккаунт”
+сменилась на “Мой профиль”
+ */
 public class FirstTest extends AbstractTest {
 
     @Test
     public void test() {
-        driver.get("https://www.ozon.ru/");
+        driver.get(OZON_URL);
         String title = driver.getTitle();
         String expectedTitle = "OZON — интернет-магазин. Миллионы товаров по выгодным ценам";
         assertEquals(expectedTitle, title);
