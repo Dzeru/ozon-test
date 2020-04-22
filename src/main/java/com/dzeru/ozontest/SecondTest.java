@@ -19,9 +19,6 @@ public class SecondTest extends AbstractTest {
     private static final String CITY_XPATH = "//*[@id=\"__nuxt\"]/div/div[1]/div[1]/div/button/span";
     private static final String CITY_INPUT_XPATH = "//*[@id=\"__nuxt\"]/div/div[2]/div/div/div/div/div/label/div/input";
     private static final String CITY_FIRST_XPATH = "//*[@id=\"__nuxt\"]/div/div[2]/div/div/div/div/ul/li[1]/a";
-    private static final String LOGIN_BUTTON_XPATH = "//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[1]/div[2]/div[2]/div/button";
-    private static final String PHONE_INPUT_XPATH = "/html/body/div[3]/div/div/div/div/div/div/div/div/div[2]/label/div/input";
-    private static final String CODE_INPUT_PATH = "/html/body/div[3]/div/div/div/div/div/div/div/div/div[1]/div/div[3]/div[1]/div[1]/input";
 
     private static final String CITY = "Вольск";
     private static final String CITY_FULL = "Вольск, Саратовская область";
