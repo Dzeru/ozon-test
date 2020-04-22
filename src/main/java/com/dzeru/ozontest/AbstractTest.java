@@ -12,6 +12,8 @@ public abstract class AbstractTest {
     protected static Properties properties = new Properties();
     protected ChromeDriver driver;
     protected final String OZON_URL = "https://www.ozon.ru/";
+    protected String PHONE = "";
+    protected String AUTH_CODE = "";
 
     static {
         try {
@@ -28,6 +30,8 @@ public abstract class AbstractTest {
     @BeforeEach
     protected void setUp() {
         System.setProperty("webdriver.chrome.driver", properties.getProperty("ozon-test.chromedriver-path"));
+        PHONE = properties.getProperty("ozon-test.phone");
+        AUTH_CODE = properties.getProperty("ozon-test.auth-code");
         driver = new ChromeDriver();
     }
 
