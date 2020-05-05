@@ -11,8 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /*
 Находясь на главной странице ozon.ru сменить город с Саратова на Вольск,
-проверить что значение изменилось. Авторизоваться на сайте, перейти в
-настройки и сравнить значение города в верхнем углу и город доставки.
+проверить что значение изменилось.
  */
 public class SecondTest extends AbstractTest {
 
@@ -24,7 +23,7 @@ public class SecondTest extends AbstractTest {
     private static final String CITY_FULL = "Вольск, Саратовская область";
 
     @Test
-    public void test() throws Exception {
+    public void test() {
         driver.get(OZON_URL);
         WebDriverWait webDriverWait = new WebDriverWait(driver, 2);
         WebElement cityElement = driver.findElementByXPath(CITY_XPATH);
@@ -39,17 +38,5 @@ public class SecondTest extends AbstractTest {
         cityElement = driver.findElementByXPath(CITY_XPATH);
 
         assertEquals(CITY, cityElement.getText());
-
-        WebElement loginButton = driver.findElementByXPath(LOGIN_BUTTON_XPATH);
-        loginButton.click();
-
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(PHONE_INPUT_XPATH)));
-        WebElement phoneInput = driver.findElementByXPath(PHONE_INPUT_XPATH);
-        phoneInput.sendKeys(PHONE);
-        phoneInput.sendKeys(Keys.ENTER);
-
-        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(CODE_INPUT_PATH)));
-        WebElement codeInput = driver.findElementByXPath(CODE_INPUT_PATH);
-        codeInput.sendKeys(AUTH_CODE);
     }
 }
