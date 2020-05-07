@@ -1,5 +1,6 @@
 package com.dzeru.ozontest;
 
+import com.dzeru.ozontest.pages.AbstractPageObject;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -13,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 Находясь на главной странице ozon.ru сменить город с Саратова на Вольск,
 проверить что значение изменилось.
  */
-public class SecondTest extends AbstractTest {
+public class SecondTest extends AbstractPageObject {
 
     private static final String CITY_XPATH = "//*[@id=\"__nuxt\"]/div/div[1]/div[1]/div/button/span";
     private static final String CITY_INPUT_XPATH = "//*[@id=\"__nuxt\"]/div/div[2]/div/div/div/div/div/label/div/input";

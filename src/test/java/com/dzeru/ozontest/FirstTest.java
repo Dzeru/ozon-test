@@ -1,5 +1,6 @@
 package com.dzeru.ozontest;
 
+import com.dzeru.ozontest.pages.AbstractPageObject;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
@@ -14,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 странице отображается логин. Убедиться что кнопка “Войти в аккаунт”
 сменилась на “Мой профиль”
  */
-public class FirstTest extends AbstractTest {
+public class FirstTest extends AbstractPageObject {
 
     private static final String SETTINGS_XPATH = "//*[@id=\"__nuxt\"]/div/div[1]/header/div[1]/div[4]/div[1]/a";
 

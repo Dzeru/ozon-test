@@ -1,16 +1,18 @@
-package com.dzeru.ozontest;
+package com.dzeru.ozontest.pages;
 
+import com.dzeru.ozontest.listeners.WebDriverEventListener;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 import java.io.IOException;
 import java.util.Properties;
 
-public abstract class AbstractTest {
+public abstract class AbstractPageObject {
 
+    public static EventFiringWebDriver driver;
     protected static Properties properties = new Properties();
-    protected ChromeDriver driver;
     protected final String OZON_URL = "https://www.ozon.ru";
     protected String PHONE = "";
     protected String AUTH_CODE = "";
@@ -36,7 +38,11 @@ public abstract class AbstractTest {
         System.setProperty("webdriver.chrome.driver", properties.getProperty("ozon-test.chromedriver-path"));
         PHONE = properties.getProperty("ozon-test.phone");
         AUTH_CODE = properties.getProperty("ozon-test.auth-code");
-        driver = new ChromeDriver();
+        driver = new EventFiringWebDriver(new ChromeDriver());
+        driver.manage().window().maximize();
+        WebDriverEventListener eventListener = new WebDriverEventListener();
+        driver.register(eventListener);
+        driver.get(OZON_URL);
     }
 
     @AfterEach
