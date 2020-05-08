@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="suite">
+    <test name="Login">
+        <classes>
+            <class name="com.dzeru.ozontest.FirstTest"/>
+        </classes>
+    </test>
+    <test name="ChangeCity">
+        <classes>
+            <class name="com.dzeru.ozontest.SecondTest"/>
+        </classes>
+    </test>
+</suite>

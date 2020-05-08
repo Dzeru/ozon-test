@@ -1,16 +1,5 @@
 package com.dzeru.ozontest;
 
-import com.dzeru.ozontest.pages.AbstractPageObject;
-import org.junit.jupiter.api.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
 /*
 Перейти в каталог “Бытовая техника/Соковыжималки”, выполнить поиск с
 диапазоном цен от 3000 до 4000 рублей. Проверить что в результате
@@ -19,7 +8,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 первую (самую дешевую) соковыжималку в корзину и перейти в нее. Увеличить
 количество соковыжималок до 5 проверить, что сумма увеличилась в 5 раз.
  */
-public class ThirdTest extends AbstractPageObject {
+/*
+public class ThirdTest extends SupportTestSettings {
 
     private static final String CATALOG_XPATH = "//*[@id=\"__nuxt\"]/div/div[1]/header/div[1]/div[2]/div/div[1]/button";
     private static final String HOME_TECH_LABEL_XPATH = "//*[@id=\"__nuxt\"]/div/div[1]/header/div[1]/div[2]/div/div[2]/div/div[1]/div/a[12]";
@@ -86,10 +76,6 @@ public class ThirdTest extends AbstractPageObject {
         }
         chooseSortTypeInput.sendKeys(Keys.ENTER);
 
-        //webDriverWait.until(ExpectedConditions.invisibilityOf(driver.findElement(dotsLocator)));
-
-        //WebElement firstJuicerPrice = driver.findElementByXPath("//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[2]/div[2]/div[3]/div[1]/div/div/div[1]/div/div/div[3]/a/div[1]/span");
-
         WebElement firstJuicerPrice = driver.findElementByClassName("a4o8");
         System.out.println(firstJuicerPrice.getText());
 
@@ -100,3 +86,4 @@ public class ThirdTest extends AbstractPageObject {
         webDriverWait.until(d -> "complete".equals(driver.executeScript("return document.readyState;").toString()));
     }
 }
+*/
