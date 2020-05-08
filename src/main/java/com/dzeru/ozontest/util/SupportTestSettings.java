@@ -1,25 +1,23 @@
-package com.dzeru.ozontest.pages;
+package com.dzeru.ozontest.util;
 
 import com.dzeru.ozontest.listeners.WebDriverEventListener;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 import java.io.IOException;
 import java.util.Properties;
 
-public abstract class AbstractPageObject {
+public abstract class SupportTestSettings {
 
     public static EventFiringWebDriver driver;
-    protected static Properties properties = new Properties();
-    protected final String OZON_URL = "https://www.ozon.ru";
-    protected String PHONE = "";
-    protected String AUTH_CODE = "";
-
-    protected static final String LOGIN_BUTTON_XPATH = "//*[@id=\"__nuxt\"]/div/div[1]/div[2]/div[1]/div[2]/div[2]/div/button";
-    protected static final String PHONE_INPUT_XPATH = "/html/body/div[3]/div/div/div/div/div/div/div/div/div[2]/label/div/input";
-    protected static final String CODE_INPUT_PATH = "/html/body/div[3]/div/div/div/div/div/div/div/div/div[1]/div/div[3]/div[1]/div[1]/input";
+    public static WebDriverWait webDriverWait;
+    public static Properties properties = new Properties();
+    public static final String OZON_URL = "https://www.ozon.ru";
+    public static String PHONE = "";
+    public static String AUTH_CODE = "";
 
     static {
         try {
@@ -33,8 +31,8 @@ public abstract class AbstractPageObject {
         }
     }
 
-    @BeforeEach
-    protected void setUp() {
+    @BeforeMethod
+    public void setUp() {
         System.setProperty("webdriver.chrome.driver", properties.getProperty("ozon-test.chromedriver-path"));
         PHONE = properties.getProperty("ozon-test.phone");
         AUTH_CODE = properties.getProperty("ozon-test.auth-code");
@@ -42,11 +40,12 @@ public abstract class AbstractPageObject {
         driver.manage().window().maximize();
         WebDriverEventListener eventListener = new WebDriverEventListener();
         driver.register(eventListener);
+        webDriverWait = new WebDriverWait(driver, 10);
         driver.get(OZON_URL);
     }
 
-    @AfterEach
-    protected void close() {
+    @AfterMethod
+    public void close() {
         driver.quit();
     }
 }
