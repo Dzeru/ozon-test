@@ -23,11 +23,13 @@ public class PageObjectJuicer {
     private static final String PRICE_MIN_INPUT_XPATH = "//*[@id=\"__" + XPATH_ID + "\"]/div/div[1]/div[2]/div[2]/div[1]/div/aside/div[2]/div[2]/div[2]/div[1]/input";
     private static final String PRICE_MAX_INPUT_XPATH = "//*[@id=\"__" + XPATH_ID + "\"]/div/div[1]/div[2]/div[2]/div[1]/div/aside/div[2]/div[2]/div[2]/div[2]/input";
     private static final String MIN_MAX_PRICE_LABEL_XPATH = "//*[@id=\"__" + XPATH_ID + "\"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div/div/button/div/span";
+    private static final String POWER_MIN_INPUT_XPATH = "//*[@id=\"__" + XPATH_ID + "\"]/div/div[1]/div[2]/div[2]/div[1]/div/aside/div[9]/div[2]/div[2]/div[1]/input";
+    private static final String MIN_MAX_POWER_LABEL_XPATH = "//*[@id=\"__" + XPATH_ID + "\"]/div/div[1]/div[2]/div[2]/div[2]/div[2]/div[2]/div/div[2]/button/div/span";
     private static final String FIRST_JUICER_PRICE_XPATH = "//*[@id=\"__" + XPATH_ID + "\"]/div/div[1]/div[2]/div[2]/div[2]/div[3]/div[1]/div/div/div[1]/div/div/div[3]/a/div[1]/span";
     private static final String FIRST_SALE_JUICER_PRICE_XPATH = "//*[@id=\"__" + XPATH_ID + "\"]/div/div[1]/div[2]/div[2]/div[2]/div[3]/div[1]/div/div/div[1]/div/div/div[3]/a/div[2]/span";
     private static final String CLOSE_COOKIE_POPUP_XPATH = "//*[@id=\"__" + XPATH_ID + "\"]/div/div[3]/div/button";
     private static final String FIRST_JUICER_CART_XPATH = "//*[@id=\"__" + XPATH_ID + "\"]/div/div[1]/div[2]/div[2]/div[2]/div[3]/div[1]/div/div/div[1]/div/div/div[3]/div[3]/div/div/button";
-
+    private static final String FIRST_JUICER_POWER_CART_XPATH = "//*[@id=\"__" + XPATH_ID + "\"]/div/div[1]/div[2]/div[2]/div[2]/div[3]/div[1]/div[1]/div/div[1]/div/div/div[3]/div[3]/div/div/button";
     private static final String CHOOSE_SORT_TYPE_INPUT_CSS= "[role=\"combobox\"]";
     private static final String CART_CSS= "[data-widget=\"cart\"]";
 
@@ -35,6 +37,7 @@ public class PageObjectJuicer {
 
     private static final String MIN_PRICE = "3000";
     private static final String MAX_PRICE = "4000";
+    private static final String MIN_POWER = "1000";
 
     private WebElement chooseSortTypeInput;
 
@@ -77,6 +80,25 @@ public class PageObjectJuicer {
         assertEquals(driver.findElement(By.xpath(MIN_MAX_PRICE_LABEL_XPATH)).getText(), minMaxPrice);
     }
 
+    @Step("Input min power")
+    public void inputMinPower() {
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(POWER_MIN_INPUT_XPATH)));
+        closeCookiePopUp();
+        WebElement priceMinInput = driver.findElement(By.xpath(POWER_MIN_INPUT_XPATH));
+        priceMinInput.sendKeys(Keys.CONTROL + "a");
+        priceMinInput.sendKeys(MIN_POWER);
+        priceMinInput.sendKeys(Keys.ENTER);
+    }
+
+    @Step("Check range with min power")
+    public void checkRangeWithMinPower() {
+        final String minPower = "Мощность, Вт: от 1 000";
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(MIN_MAX_POWER_LABEL_XPATH)));
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(MIN_MAX_POWER_LABEL_XPATH)));
+
+        assertTrue(driver.findElement(By.xpath(MIN_MAX_POWER_LABEL_XPATH)).getText().startsWith(minPower));
+    }
+
     @Step("Sort by price desc")
     public void sortByPriceDesc() {
         sortByPrice(3);
@@ -93,14 +115,15 @@ public class PageObjectJuicer {
 
     @Step("Put juicer in the cart")
     public void putJuicerInCart() {
-        WebElement firstJuicerCart = null;
-        try {
-             firstJuicerCart = driver.findElement(By.xpath(FIRST_JUICER_CART_XPATH));
-        }
-        catch(Exception e) {
-            System.out.println("AAAA VSE SLOMALOS");
-            WebElement webElement = driver.findElement(By.xpath("//*[@id=\"__" + XPATH_ID + "\"]/div/div[1]/div[2]/div[2]/div[2]/div[3]/div[1]/div/div/div[1]/div/div/div[3]"));
-        }
+        WebElement firstJuicerCart = driver.findElement(By.xpath(FIRST_JUICER_CART_XPATH));
+        firstJuicerCart.click();
+        WebElement cart = driver.findElement(By.cssSelector(CART_CSS));
+        cart.click();
+    }
+
+    @Step("Put juicer with power filter in the cart")
+    public void putJuicerPowerInCart() {
+        WebElement firstJuicerCart = driver.findElement(By.xpath(FIRST_JUICER_POWER_CART_XPATH));
         firstJuicerCart.click();
         WebElement cart = driver.findElement(By.cssSelector(CART_CSS));
         cart.click();
