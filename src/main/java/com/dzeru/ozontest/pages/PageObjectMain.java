@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -13,26 +14,29 @@ import static org.testng.Assert.assertEquals;
 
 public class PageObjectMain {
 
-    WebDriver driver;
-    WebDriverWait webDriverWait;
-
-    private static final String LOGIN_BUTTON_XPATH = "//*[@id=\"__ozon\"]/div/div[1]/div[2]/div[1]/div[2]/div[2]/div/button";
-    private static final String PHONE_INPUT_XPATH = "/html/body/div[3]/div/div/div/div/div/div/div/div/div[2]/label/div/input";
-    private static final String CODE_INPUT_PATH = "/html/body/div[3]/div/div/div/div/div/div/div/div/div[1]/div/div[3]/div[1]/div[1]/input";
-    private static final String SETTINGS_XPATH = "//*[@id=\"__ozon\"]/div/div[1]/header/div[1]/div[4]/div[1]/a";
-    private static final String CITY_XPATH = "/html/body/div[1]/div/div/div[1]/div/button/span";
-    private static final String CITY_INPUT_XPATH = "//*[@id=\"__nuxt\"]/div/div[2]/div/div/div/div/div/label/div/input";
-    private static final String CITY_FIRST_XPATH = "//*[@id=\"__nuxt\"]/div/div[2]/div/div/div/div/ul/li[1]/a";
-
-    private static final String CITY = "Вольск";
-    private static final String CITY_FULL = "Вольск, Саратовская область";
-
-    private WebElement cityElement;
+    private WebDriver driver;
+    private WebDriverWait webDriverWait;
 
     public PageObjectMain(WebDriver driver, WebDriverWait webDriverWait) {
         this.driver = driver;
         this.webDriverWait = webDriverWait;
     }
+
+    private static final String LOGIN_BUTTON_XPATH = "/html/body/div[1]/div/div[1]/div[3]/div[1]/div[2]/div[2]/div/button/div/div";
+    private static final String PHONE_INPUT_XPATH = "/html/body/div[3]/div/div/div/div/div/div/div/div/div[2]/label/div/input";
+    private static final String CODE_INPUT_PATH = "/html/body/div[3]/div/div/div/div/div/div/div/div/div[1]/div/div[3]/div[1]/div[1]/input";
+    private static final String SETTINGS_XPATH = "/html/body/div[1]/div/div[1]/header/div[1]/div[4]/div[1]/a";
+    private static final String CITY_XPATH = "/html/body/div[1]/div/div[1]/div[1]/div/button/span";
+    private static final String CITY_INPUT_XPATH = "/html/body/div[1]/div/div[2]/div/div/div/div/div/label/div/input";
+    private static final String CITY_FIRST_XPATH = "/html/body/div[1]/div/div[2]/div/div/div/div/ul/li[1]/a";
+    private static final String CATALOG_XPATH = "/html/body/div[1]/div/div[1]/header/div[1]/div[2]/div/div[1]/button";
+    private static final String HOME_TECH_LABEL_XPATH = "/html/body/div[1]/div/div[1]/header/div[1]/div[2]/div/div[2]/div/div[1]/div/a[12]";
+    private static final String JUICER_LABEL_XPATH = "/html/body/div[1]/div/div[1]/header/div[1]/div[2]/div/div[2]/div/div[2]/div/div[2]/div/div[1]/div[2]/div/a[6]";
+
+    private static final String CITY = "Вольск";
+    private static final String CITY_FULL = "Вольск, Саратовская область";
+
+    private WebElement cityElement;
 
     @Step("Click login button")
     public void clickLoginButton() {
@@ -86,5 +90,25 @@ public class PageObjectMain {
         webDriverWait.until(ExpectedConditions.textToBe(By.xpath(CITY_XPATH), CITY));
         cityElement = driver.findElement(By.xpath(CITY_XPATH));
         assertEquals(cityElement.getText(), CITY);
+    }
+
+    @Step("Click catalog")
+    public void clickCatalog() {
+        WebElement catalog = driver.findElement(By.xpath(CATALOG_XPATH));
+        catalog.click();
+    }
+
+    @Step("Click home tech label")
+    public void clickHomeTechLabel() {
+        WebElement homeTechLabel = driver.findElement(By.xpath(HOME_TECH_LABEL_XPATH));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(homeTechLabel).build().perform();
+    }
+
+    @Step("Click juicer label")
+    public void clickJuicerLabel() {
+        webDriverWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(JUICER_LABEL_XPATH)));
+        WebElement juicerLabel = driver.findElement(By.xpath(JUICER_LABEL_XPATH));
+        juicerLabel.click();
     }
 }

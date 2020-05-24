@@ -18,6 +18,7 @@ public abstract class SupportTestSettings {
     public static final String OZON_URL = "https://www.ozon.ru";
     public static String PHONE = "";
     public static String AUTH_CODE = "";
+    public static String XPATH_ID = "";
 
     static {
         try {
@@ -31,11 +32,16 @@ public abstract class SupportTestSettings {
         }
     }
 
+    public static String deleteNotNumber(String string) {
+        return string.replaceAll("[^\\d]*", "");
+    }
+
     @BeforeMethod
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", properties.getProperty("ozon-test.chromedriver-path"));
         PHONE = properties.getProperty("ozon-test.phone");
         AUTH_CODE = properties.getProperty("ozon-test.auth-code");
+        XPATH_ID = properties.getProperty("ozon-test.xpath-id");
         driver = new EventFiringWebDriver(new ChromeDriver());
         driver.manage().window().maximize();
         WebDriverEventListener eventListener = new WebDriverEventListener();
