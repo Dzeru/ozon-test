@@ -10,6 +10,7 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static com.dzeru.ozontest.util.SupportTestSettings.XPATH_ID;
 import static org.testng.Assert.assertEquals;
 
 public class PageObjectMain {
@@ -22,13 +23,13 @@ public class PageObjectMain {
         this.webDriverWait = webDriverWait;
     }
 
-    private static final String LOGIN_BUTTON_XPATH = "/html/body/div[1]/div/div[1]/div[3]/div[1]/div[2]/div[2]/div/button/div/div";
+    private static final String LOGIN_BUTTON_XPATH = "//*[@id=\"__" + XPATH_ID + "\"]/div/div[1]/div[2]/div[1]/div[2]/div[2]/div/button";
     private static final String PHONE_INPUT_XPATH = "/html/body/div[3]/div/div/div/div/div/div/div/div/div[2]/label/div/input";
     private static final String CODE_INPUT_PATH = "/html/body/div[3]/div/div/div/div/div/div/div/div/div[1]/div/div[3]/div[1]/div[1]/input";
     private static final String SETTINGS_XPATH = "/html/body/div[1]/div/div[1]/header/div[1]/div[4]/div[1]/a";
-    private static final String CITY_XPATH = "/html/body/div[1]/div/div[1]/div[1]/div/button/span";
-    private static final String CITY_INPUT_XPATH = "/html/body/div[1]/div/div[2]/div/div/div/div/div/label/div/input";
-    private static final String CITY_FIRST_XPATH = "/html/body/div[1]/div/div[2]/div/div/div/div/ul/li[1]/a";
+    private static final String CITY_XPATH = "//*[@id=\"__" + XPATH_ID + "\"]/div/div[1]/div[1]/div/button/span";
+    private static final String CITY_INPUT_XPATH = "//*[@id=\"__" + XPATH_ID + "\"]/div/div[2]/div/div/div/div/div/label/div/input";
+    private static final String CITY_FIRST_XPATH = "//*[@id=\"__" + XPATH_ID + "\"]/div/div[2]/div/div/div/div/ul/li[1]/a";
     private static final String CATALOG_XPATH = "/html/body/div[1]/div/div[1]/header/div[1]/div[2]/div/div[1]/button";
     private static final String HOME_TECH_LABEL_XPATH = "/html/body/div[1]/div/div[1]/header/div[1]/div[2]/div/div[2]/div/div[1]/div/a[12]";
     private static final String JUICER_LABEL_XPATH = "/html/body/div[1]/div/div[1]/header/div[1]/div[2]/div/div[2]/div/div[2]/div/div[2]/div/div[1]/div[2]/div/a[6]";

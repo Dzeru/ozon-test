@@ -5,9 +5,19 @@
             <class name="com.dzeru.ozontest.FirstTest"/>
         </classes>
     </test>
-    <test name="ChangeCity">
+    <test name="Change city">
         <classes>
             <class name="com.dzeru.ozontest.SecondTest"/>
+        </classes>
+    </test>
+    <test name="Buy juicer set price">
+        <classes>
+            <class name="com.dzeru.ozontest.ThirdTest"/>
+        </classes>
+    </test>
+    <test name="Buy juicer set price and power">
+        <classes>
+            <class name="com.dzeru.ozontest.FourthTest"/>
         </classes>
     </test>
 </suite>

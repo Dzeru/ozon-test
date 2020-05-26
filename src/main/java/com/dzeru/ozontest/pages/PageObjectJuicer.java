@@ -115,6 +115,7 @@ public class PageObjectJuicer {
 
     @Step("Put juicer in the cart")
     public void putJuicerInCart() {
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(FIRST_JUICER_CART_XPATH)));
         WebElement firstJuicerCart = driver.findElement(By.xpath(FIRST_JUICER_CART_XPATH));
         firstJuicerCart.click();
         WebElement cart = driver.findElement(By.cssSelector(CART_CSS));
@@ -123,6 +124,7 @@ public class PageObjectJuicer {
 
     @Step("Put juicer with power filter in the cart")
     public void putJuicerPowerInCart() {
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(FIRST_JUICER_POWER_CART_XPATH)));
         WebElement firstJuicerCart = driver.findElement(By.xpath(FIRST_JUICER_POWER_CART_XPATH));
         firstJuicerCart.click();
         WebElement cart = driver.findElement(By.cssSelector(CART_CSS));
